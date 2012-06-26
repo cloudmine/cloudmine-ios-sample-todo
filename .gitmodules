@@ -1,0 +1,3 @@
+[submodule "Todoly/PullToRefreshView"]
+	path = Todoly/PullToRefreshView
+	url = git://github.com/zman0900/PullToRefreshView.git
