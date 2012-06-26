@@ -20,7 +20,7 @@
 - (id)initWithText:(NSString *)text {
     if(self = [super init]) {
         self.text = text;
-        self.deadline = [[CMDate alloc] initWithDate:[NSDate date]];
+        self.deadline = [[CMDate alloc] initWithDate:[NSDate dateWithTimeIntervalSinceNow:86400]]; // Due one day from now, by default
         self.priority = 2;
         self.done = NO;
     }
