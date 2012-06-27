@@ -126,7 +126,7 @@
 }
 
 - (void)sortItems {
-    [_items sortUsingComparator:^(id obj1, id obj2) {
+    [_items sortUsingComparator:^NSComparisonResult (TBTodoItem *obj1, TBTodoItem *obj2) {
         if ([obj1 done] != [obj2 done]) {
             return ([obj1 done] ? NSOrderedAscending : NSOrderedDescending);
         }
