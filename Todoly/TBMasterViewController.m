@@ -43,8 +43,8 @@
     
     if (!self.user.isLoggedIn)
         [self performSegueWithIdentifier:@"Login" sender:self];
-    
-    [self reloadData];
+    else
+        [self reloadData];
 }
 
 - (void)viewDidUnload {
@@ -255,12 +255,13 @@
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         TBTodoItem *item = [_items objectAtIndex:indexPath.row];
         
-        item.done = !item.done;
+        item.done = !item.done;        
+        cell.accessoryType = item.done ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         
-        if (item.done)
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        else
-            cell.accessoryType = UITableViewCellAccessoryNone;
+        [self sortItems];
+        
+        NSIndexPath *changedPath = [NSIndexPath indexPathForItem:[_items indexOfObject:item] inSection:0];
+        [self.tableView moveRowAtIndexPath:indexPath toIndexPath:changedPath];
         
         [item save:^(CMObjectUploadResponse *response) {
             if (![[response.uploadStatuses objectForKey:item.objectId] isEqualToString:@"updated"]) {
@@ -271,6 +272,11 @@
                 [errorAlert show];
                 
                 item.done = !item.done;
+                
+                [self sortItems];
+                
+                NSIndexPath *revertedPath = [NSIndexPath indexPathForItem:[_items indexOfObject:item] inSection:0];
+                [self.tableView moveRowAtIndexPath:changedPath toIndexPath:revertedPath];
             }
             
             cell.accessoryType = item.done ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
