@@ -10,12 +10,10 @@
 
 @interface TBTodoItem : CMObject
 
-@property (strong) NSString * text;
-@property (strong) CMDate * deadline;
+@property (strong) NSString *text;
+@property (strong) CMDate *deadline;
 @property BOOL done;
 @property int priority;
-@property (strong) CMGeoPoint *location;
-@property (strong) NSString *picture;
 
 - (id)initWithText:(NSString *)text;
 

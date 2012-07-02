@@ -14,8 +14,6 @@
 @synthesize deadline = _deadline;
 @synthesize done = _done;
 @synthesize priority = _priority;
-@synthesize location = _location;
-@synthesize picture = _picture;
 
 - (id)initWithText:(NSString *)text {
     if(self = [super init]) {
@@ -34,8 +32,6 @@
         self.deadline = [coder decodeObjectForKey:@"deadline"];
         self.done = [coder decodeBoolForKey:@"done"];
         self.priority = [coder decodeIntForKey:@"priority"];
-        self.location = [coder decodeObjectForKey:@"location"];
-        self.picture = [coder decodeObjectForKey:@"picture"];
     }
     
     return self;
@@ -47,10 +43,6 @@
     [coder encodeObject:_deadline forKey:@"deadline"];
     [coder encodeBool:_done forKey:@"done"];
     [coder encodeInt:_priority forKey:@"priority"];
-    [coder encodeObject:_location forKey:@"location"];
-    [coder encodeObject:_picture forKey:@"picture"];
 }
-
-
 
 @end
