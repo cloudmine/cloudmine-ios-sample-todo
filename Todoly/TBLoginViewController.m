@@ -55,6 +55,15 @@
     };
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    UIImageView *headerView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cloudmine-clouds"]];
+    headerView.frame = (CGRect){self.tableView.bounds.origin,{self.tableView.bounds.size.width, 88}};
+    headerView.contentMode = UIViewContentModeScaleAspectFit;
+    self.tableView.tableHeaderView = headerView;
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
