@@ -36,18 +36,21 @@
     _priorityControl.selectedSegmentIndex = _item.priority - 1;
     _deadlinePicker.date = _item.deadline;
     _deadlinePicker.minimumDate = [[NSDate date] earlierDate:_item.deadline];
+    
+    // Storyboard made the deadline picker the table footer view
+    // This changes that and makes the deadline picker a static view
+    UIDatePicker *deadlinePicker = self.deadlinePicker;    
+    self.tableView.tableFooterView = nil;
+    [self.view addSubview:deadlinePicker];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    UIDatePicker *deadlinePicker = self.deadlinePicker;    
+    // Update deadline picker frame
     CGSize tableViewSize = self.tableView.bounds.size;
-    CGSize deadlineSize = deadlinePicker.bounds.size;
-    deadlinePicker.frame = (CGRect){{tableViewSize.width - deadlineSize.width, tableViewSize.height - deadlineSize.height}, deadlineSize};
-    
-    self.tableView.tableFooterView = nil;
-    [self.view addSubview:deadlinePicker];
+    CGSize deadlineSize = self.deadlinePicker.bounds.size;
+    self.deadlinePicker.frame = (CGRect){{tableViewSize.width - deadlineSize.width, tableViewSize.height - deadlineSize.height}, deadlineSize};
 }
 
 - (IBAction)deadlinePickerChanged:(id)sender {
