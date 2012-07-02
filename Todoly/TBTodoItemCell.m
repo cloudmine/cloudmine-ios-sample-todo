@@ -8,22 +8,29 @@
 
 #import "TBTodoItemCell.h"
 
+@interface TBTodoItemCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *priorityView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@end
+
+static __strong NSArray *priorityImages;
+
 @implementation TBTodoItemCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+@synthesize todoItem = _todoItem;
+@synthesize priorityView = _priorityView;
+@synthesize titleLabel = _titleLabel;
+
++ (void)load {
+    priorityImages = [NSArray arrayWithObjects:[UIImage imageNamed:@"priority-red"], [UIImage imageNamed:@"priority-yellow"], [UIImage imageNamed:@"priority-green"], nil];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)setTodoItem:(TBTodoItem *)todoItem {
+    _todoItem = todoItem;
+    
+    self.priorityView.image = [priorityImages objectAtIndex:(todoItem.priority - 1)];
+    self.titleLabel.text = _todoItem.text;
+    self.accessoryType = _todoItem.done ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;    
 }
 
 @end

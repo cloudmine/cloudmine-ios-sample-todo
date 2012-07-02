@@ -30,6 +30,12 @@
 		D07A4A5415950A73003E4DCE /* TBTodoItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D07A4A5315950A73003E4DCE /* TBTodoItemCell.m */; };
 		D0A4B1A415A1E55400362D67 /* cloudmine-clouds.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A4B1A315A1E55400362D67 /* cloudmine-clouds.png */; };
 		D0A4B1A615A1E6B400362D67 /* cloudmine-clouds@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A4B1A515A1E6B400362D67 /* cloudmine-clouds@2x.png */; };
+		D0A4B1AD15A1F87400362D67 /* priority-green.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A4B1A715A1F87400362D67 /* priority-green.png */; };
+		D0A4B1AE15A1F87400362D67 /* priority-green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A4B1A815A1F87400362D67 /* priority-green@2x.png */; };
+		D0A4B1AF15A1F87400362D67 /* priority-red.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A4B1A915A1F87400362D67 /* priority-red.png */; };
+		D0A4B1B015A1F87400362D67 /* priority-red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A4B1AA15A1F87400362D67 /* priority-red@2x.png */; };
+		D0A4B1B115A1F87400362D67 /* priority-yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A4B1AB15A1F87400362D67 /* priority-yellow.png */; };
+		D0A4B1B215A1F87400362D67 /* priority-yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A4B1AC15A1F87400362D67 /* priority-yellow@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +72,12 @@
 		D07A4A5315950A73003E4DCE /* TBTodoItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBTodoItemCell.m; sourceTree = "<group>"; };
 		D0A4B1A315A1E55400362D67 /* cloudmine-clouds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cloudmine-clouds.png"; sourceTree = "<group>"; };
 		D0A4B1A515A1E6B400362D67 /* cloudmine-clouds@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cloudmine-clouds@2x.png"; sourceTree = "<group>"; };
+		D0A4B1A715A1F87400362D67 /* priority-green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "priority-green.png"; sourceTree = "<group>"; };
+		D0A4B1A815A1F87400362D67 /* priority-green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "priority-green@2x.png"; sourceTree = "<group>"; };
+		D0A4B1A915A1F87400362D67 /* priority-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "priority-red.png"; sourceTree = "<group>"; };
+		D0A4B1AA15A1F87400362D67 /* priority-red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "priority-red@2x.png"; sourceTree = "<group>"; };
+		D0A4B1AB15A1F87400362D67 /* priority-yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "priority-yellow.png"; sourceTree = "<group>"; };
+		D0A4B1AC15A1F87400362D67 /* priority-yellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "priority-yellow@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +167,12 @@
 		D07A4A071594D3AA003E4DCE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D0A4B1A715A1F87400362D67 /* priority-green.png */,
+				D0A4B1A815A1F87400362D67 /* priority-green@2x.png */,
+				D0A4B1A915A1F87400362D67 /* priority-red.png */,
+				D0A4B1AA15A1F87400362D67 /* priority-red@2x.png */,
+				D0A4B1AB15A1F87400362D67 /* priority-yellow.png */,
+				D0A4B1AC15A1F87400362D67 /* priority-yellow@2x.png */,
 				D0A4B1A315A1E55400362D67 /* cloudmine-clouds.png */,
 				D0A4B1A515A1E6B400362D67 /* cloudmine-clouds@2x.png */,
 				D0716DD7159A2F6A001988A9 /* arrow.png */,
@@ -225,6 +243,12 @@
 				D0716DDA159A2F6A001988A9 /* arrow@2x.png in Resources */,
 				D0A4B1A415A1E55400362D67 /* cloudmine-clouds.png in Resources */,
 				D0A4B1A615A1E6B400362D67 /* cloudmine-clouds@2x.png in Resources */,
+				D0A4B1AD15A1F87400362D67 /* priority-green.png in Resources */,
+				D0A4B1AE15A1F87400362D67 /* priority-green@2x.png in Resources */,
+				D0A4B1AF15A1F87400362D67 /* priority-red.png in Resources */,
+				D0A4B1B015A1F87400362D67 /* priority-red@2x.png in Resources */,
+				D0A4B1B115A1F87400362D67 /* priority-yellow.png in Resources */,
+				D0A4B1B215A1F87400362D67 /* priority-yellow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

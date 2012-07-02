@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "TBTodoItem.h"
+
 @interface TBTodoItemCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *priorityLabel;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) TBTodoItem *todoItem;
 
 @end

@@ -216,30 +216,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TBTodoItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    
-    TBTodoItem *item = [_items objectAtIndex:indexPath.row];
-    cell.priorityLabel.text = [NSString stringWithFormat:@"%d", item.priority];
-    cell.titleLabel.text = item.text;
-        
-    UIColor *priorityColor = nil;
-    switch (item.priority) {
-        case 1:
-            priorityColor = [UIColor colorWithRed:(249.0f/255.0f) green:(179.0f/255.0f) blue:(161.0f/255.0f) alpha:1.0];
-            break;
-        case 2:
-            priorityColor = [UIColor colorWithRed:(251.0f/255.0f) green:(242.0f/255.0f) blue:(130.0f/255.0f) alpha:1.0];
-            break;
-        case 3:
-            priorityColor = [UIColor colorWithRed:(195.0f/255.0f) green:(221.0f/255.0f) blue:(137.0f/255.0f) alpha:1.0];
-            break;
-        
-        default:
-            priorityColor = [UIColor whiteColor];
-            break;
-    }
-    
-    cell.accessoryType = item.done ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-    
+    cell.todoItem = [_items objectAtIndex:indexPath.row];
     return cell;
 }
 
