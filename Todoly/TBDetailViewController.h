@@ -12,14 +12,10 @@
 
 @protocol TBDetailViewControllerDelegate;
 
-@interface TBDetailViewController : UIViewController <UITextFieldDelegate>
+@interface TBDetailViewController : UITableViewController <UITextFieldDelegate>
 
 @property (weak, nonatomic) id<TBDetailViewControllerDelegate> delegate;
 @property (strong, nonatomic) TBTodoItem *item;
-
-@property (weak, nonatomic) IBOutlet UITextField *titleField;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *priorityControl;
-@property (weak, nonatomic) IBOutlet UIDatePicker *deadlinePicker;
 
 @end
 

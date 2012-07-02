@@ -8,6 +8,14 @@
 
 #import "TBDetailViewController.h"
 
+@interface TBDetailViewController ()
+
+@property (weak, nonatomic) IBOutlet UITextField *titleField;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *priorityControl;
+@property (weak, nonatomic) IBOutlet UIDatePicker *deadlinePicker;
+
+@end
+
 @implementation TBDetailViewController
 
 @synthesize delegate = _delegate;
@@ -27,10 +35,23 @@
     _titleField.text = _item.text;
     _priorityControl.selectedSegmentIndex = _item.priority - 1;
     _deadlinePicker.date = _item.deadline;
+    _deadlinePicker.minimumDate = [[NSDate date] earlierDate:_item.deadline];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    UIDatePicker *deadlinePicker = self.deadlinePicker;    
+    CGSize tableViewSize = self.tableView.bounds.size;
+    CGSize deadlineSize = deadlinePicker.bounds.size;
+    deadlinePicker.frame = (CGRect){{tableViewSize.width - deadlineSize.width, tableViewSize.height - deadlineSize.height}, deadlineSize};
+    
+    self.tableView.tableFooterView = nil;
+    [self.view addSubview:deadlinePicker];
 }
 
 - (IBAction)deadlinePickerChanged:(id)sender {
-    if (![sender isEqual:_deadlinePicker])
+    if (![sender isEqual:_deadlinePicker] || [_deadlinePicker.date isEqualToDate:_item.deadline])
         return;
     
     // Update item from date picker
@@ -67,7 +88,7 @@
 }
 
 - (IBAction)titleFieldChanged:(id)sender {
-    if (![sender isEqual:_titleField])
+    if (![sender isEqual:_titleField] || [_titleField.text isEqualToString:_item.text])
         return;
     
     // Update item from title text field
@@ -99,7 +120,7 @@
 }
 
 - (IBAction)priorityControlChanged:(id)sender {
-    if (![sender isEqual:_priorityControl])
+    if (![sender isEqual:_priorityControl] || _priorityControl.selectedSegmentIndex + 1 == _item.priority)
         return;
     
     // Update item from priority control
