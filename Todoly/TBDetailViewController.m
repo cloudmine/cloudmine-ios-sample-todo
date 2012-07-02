@@ -23,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Load initial view state from item
     _titleField.text = _item.text;
     _priorityControl.selectedSegmentIndex = _item.priority - 1;
     _deadlinePicker.date = _item.deadline;
@@ -32,24 +33,30 @@
     if (![sender isEqual:_deadlinePicker])
         return;
     
+    // Update item from date picker
     CMDate *previousDeadline = _item.deadline;
     _item.deadline = [[CMDate alloc] initWithDate:_deadlinePicker.date];
     
     if ([_delegate respondsToSelector:@selector(detailController:didModifyItem:)])
         [_delegate detailController:self didModifyItem:self.item];
     
+    // Update the item in CloudMine's object store
     [_item save:^(CMObjectUploadResponse *response) {
+        // If the item was *not* successfully updated, fix the mess
         if (![[response.uploadStatuses objectForKey:_item.objectId] isEqualToString:@"updated"]) {
+            
+            // Revert the date picker and item
+            _deadlinePicker.date = _item.deadline = previousDeadline;
+            
+            if ([_delegate respondsToSelector:@selector(detailController:didModifyItem:)])
+                [_delegate detailController:self didModifyItem:self.item];
+            
+            // Alert the user
             NSString *message = @"The item could not be updated.";
             if (response.error)
                 message = [response.error localizedDescription];
             UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:message delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
             [errorAlert show];
-            
-            _deadlinePicker.date = _item.deadline = previousDeadline;
-            
-            if ([_delegate respondsToSelector:@selector(detailController:didModifyItem:)])
-                [_delegate detailController:self didModifyItem:self.item];
         }
     }];
 }
@@ -63,24 +70,30 @@
     if (![sender isEqual:_titleField])
         return;
     
+    // Update item from title text field
     NSString *previousTitle = _item.text;
     _item.text = _titleField.text;
     
     if ([_delegate respondsToSelector:@selector(detailController:didModifyItem:)])
         [_delegate detailController:self didModifyItem:self.item];
     
+    // Update the item in CloudMine's object store
     [_item save:^(CMObjectUploadResponse *response) {
+        // If the item was *not* successfully updated, fix the mess
         if (![[response.uploadStatuses objectForKey:_item.objectId] isEqualToString:@"updated"]) {
+            
+            // Revert the text field and item
+            _titleField.text = _item.text = previousTitle;
+            
+            if ([_delegate respondsToSelector:@selector(detailController:didModifyItem:)])
+                [_delegate detailController:self didModifyItem:self.item];
+            
+            // Alert the user
             NSString *message = @"The item could not be updated.";
             if (response.error)
                 message = [response.error localizedDescription];
             UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:message delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
             [errorAlert show];
-            
-            _titleField.text = _item.text = previousTitle;
-            
-            if ([_delegate respondsToSelector:@selector(detailController:didModifyItem:)])
-                [_delegate detailController:self didModifyItem:self.item];
         }
     }];
 }
@@ -88,26 +101,32 @@
 - (IBAction)priorityControlChanged:(id)sender {
     if (![sender isEqual:_priorityControl])
         return;
-        
+    
+    // Update item from priority control
     int previousPriority = _item.priority;
     _item.priority = _priorityControl.selectedSegmentIndex + 1;
     
     if ([_delegate respondsToSelector:@selector(detailController:didModifyItem:)])
         [_delegate detailController:self didModifyItem:self.item];
     
+    // Update the item in CloudMine's object store
     [_item save:^(CMObjectUploadResponse *response) {
+        // If the item was *not* successfully updated, fix the mess
         if (![[response.uploadStatuses objectForKey:_item.objectId] isEqualToString:@"updated"]) {
-            NSString *message = @"The item could not be updated.";
-            if (response.error)
-                message = [response.error localizedDescription];
-            UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:message delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
-            [errorAlert show];
             
+            // Revert the priority control and item
             _item.priority = previousPriority;
             _priorityControl.selectedSegmentIndex = previousPriority - 1;
             
             if ([_delegate respondsToSelector:@selector(detailController:didModifyItem:)])
                 [_delegate detailController:self didModifyItem:self.item];
+            
+            // Alert the user
+            NSString *message = @"The item could not be updated.";
+            if (response.error)
+                message = [response.error localizedDescription];
+            UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:message delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+            [errorAlert show];
         }
     }];
 }

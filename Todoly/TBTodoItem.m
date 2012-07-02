@@ -16,8 +16,10 @@
 @synthesize priority = _priority;
 
 - (id)initWithText:(NSString *)text {
-    if(self = [super init]) {
+    if(self = [super init]) {        
         self.text = text;
+        
+        // Set default values
         self.deadline = [[CMDate alloc] initWithDate:[NSDate dateWithTimeIntervalSinceNow:86400]]; // Due one day from now, by default
         self.priority = 2;
         self.done = NO;
@@ -28,6 +30,7 @@
 
 - (id)initWithCoder:(NSCoder *)coder {
     if(self = [super initWithCoder:coder]) {
+        // Decode properties from coder
         self.text = [coder decodeObjectForKey:@"text"];
         self.deadline = [coder decodeObjectForKey:@"deadline"];
         self.done = [coder decodeBoolForKey:@"done"];
@@ -39,6 +42,8 @@
 
 - (void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
+    
+    // Encode properties in coder
     [coder encodeObject:_text forKey:@"text"];
     [coder encodeObject:_deadline forKey:@"deadline"];
     [coder encodeBool:_done forKey:@"done"];

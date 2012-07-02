@@ -22,12 +22,14 @@ static __strong NSArray *priorityImages;
 @synthesize titleLabel = _titleLabel;
 
 + (void)load {
+    // Load images into memory only once
     priorityImages = [NSArray arrayWithObjects:[UIImage imageNamed:@"priority-red"], [UIImage imageNamed:@"priority-yellow"], [UIImage imageNamed:@"priority-green"], nil];
 }
 
 - (void)setTodoItem:(TBTodoItem *)todoItem {
     _todoItem = todoItem;
     
+    // Configure cell based on the todo item
     self.priorityView.image = [priorityImages objectAtIndex:(todoItem.priority - 1)];
     self.titleLabel.text = _todoItem.text;
     self.accessoryType = _todoItem.done ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;    
