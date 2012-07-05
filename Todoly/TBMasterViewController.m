@@ -274,7 +274,7 @@
         [self sortItems];
         
         // Animate row to new position
-        NSIndexPath *changedPath = [NSIndexPath indexPathForItem:[_items indexOfObject:item] inSection:0];
+        NSIndexPath *changedPath = [NSIndexPath indexPathForRow:[_items indexOfObject:item] inSection:0];
         [self.tableView moveRowAtIndexPath:indexPath toIndexPath:changedPath];
         
         // Update item in CloudMine object store
@@ -289,7 +289,7 @@
                 [self sortItems];
                 
                 // Animate row back to old position
-                NSIndexPath *revertedPath = [NSIndexPath indexPathForItem:[_items indexOfObject:item] inSection:0];
+                NSIndexPath *revertedPath = [NSIndexPath indexPathForRow:[_items indexOfObject:item] inSection:0];
                 [self.tableView moveRowAtIndexPath:changedPath toIndexPath:revertedPath];
                 
                 // Alert the user
