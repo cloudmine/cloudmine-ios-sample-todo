@@ -36,6 +36,8 @@
 		D0A4B1B015A1F87400362D67 /* priority-red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A4B1AA15A1F87400362D67 /* priority-red@2x.png */; };
 		D0A4B1B115A1F87400362D67 /* priority-yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A4B1AB15A1F87400362D67 /* priority-yellow.png */; };
 		D0A4B1B215A1F87400362D67 /* priority-yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A4B1AC15A1F87400362D67 /* priority-yellow@2x.png */; };
+		D0AE3F2D15A5DEE30047FA4A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D0AE3F2B15A5DEE30047FA4A /* Default.png */; };
+		D0AE3F2E15A5DEE30047FA4A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0AE3F2C15A5DEE30047FA4A /* Default@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +80,8 @@
 		D0A4B1AA15A1F87400362D67 /* priority-red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "priority-red@2x.png"; sourceTree = "<group>"; };
 		D0A4B1AB15A1F87400362D67 /* priority-yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "priority-yellow.png"; sourceTree = "<group>"; };
 		D0A4B1AC15A1F87400362D67 /* priority-yellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "priority-yellow@2x.png"; sourceTree = "<group>"; };
+		D0AE3F2B15A5DEE30047FA4A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		D0AE3F2C15A5DEE30047FA4A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +179,8 @@
 				D0A4B1AC15A1F87400362D67 /* priority-yellow@2x.png */,
 				D0A4B1A315A1E55400362D67 /* cloudmine-clouds.png */,
 				D0A4B1A515A1E6B400362D67 /* cloudmine-clouds@2x.png */,
+				D0AE3F2B15A5DEE30047FA4A /* Default.png */,
+				D0AE3F2C15A5DEE30047FA4A /* Default@2x.png */,
 				D0716DD7159A2F6A001988A9 /* arrow.png */,
 				D0716DD8159A2F6A001988A9 /* arrow@2x.png */,
 				D07A4A081594D3AA003E4DCE /* Todoly-Info.plist */,
@@ -249,6 +255,8 @@
 				D0A4B1B015A1F87400362D67 /* priority-red@2x.png in Resources */,
 				D0A4B1B115A1F87400362D67 /* priority-yellow.png in Resources */,
 				D0A4B1B215A1F87400362D67 /* priority-yellow@2x.png in Resources */,
+				D0AE3F2D15A5DEE30047FA4A /* Default.png in Resources */,
+				D0AE3F2E15A5DEE30047FA4A /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
