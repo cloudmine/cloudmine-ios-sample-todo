@@ -1,0 +1,36 @@
+PODS:
+  - AFNetworking (2.4.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+    - AFNetworking/UIKit
+  - AFNetworking/NSURLConnection (2.4.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.4.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.4.1)
+  - AFNetworking/Security (2.4.1)
+  - AFNetworking/Serialization (2.4.1)
+  - AFNetworking/UIKit (2.4.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - CloudMine (1.7.3):
+    - AFNetworking (~> 2.4.1)
+    - MAObjCRuntime (~> 0.0.1)
+  - MAObjCRuntime (0.0.1)
+
+DEPENDENCIES:
+  - CloudMine (~> 1.7)
+
+SPEC CHECKSUMS:
+  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
+  CloudMine: d77e89858bd8aa57c8977c5d01ddd726d20dfda9
+  MAObjCRuntime: 9e99082c438f06c209203dbd77083cc308d9216a
+
+COCOAPODS: 0.34.2

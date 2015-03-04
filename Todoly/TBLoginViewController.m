@@ -2,7 +2,7 @@
 //  TBLoginViewController.m
 //  Todoly
 //
-//  Copyright (c) 2012 CloudMine, LLC. All rights reserved.
+//  Copyright (c) 2015 CloudMine, Inc. All rights reserved.
 //  See LICENSE file included with project for details.
 //
 
@@ -97,7 +97,7 @@
 }
 
 - (void)login {
-    if (!_user.userId.length || !_user.password.length)
+    if (!_user.email.length || !_user.password.length)
         return;
     
     // Begin login process
@@ -106,7 +106,7 @@
 }
 
 - (void)createAccountAndLogin {
-    if (!_user.userId.length || !_user.password.length)
+    if (!_user.email.length || !_user.password.length)
         return;
     
     // Being user account creation and login process
@@ -142,10 +142,11 @@
     UITextField *textField = (UITextField *)[notification object];
     
     // Update the user property as the text fields change
-    if ([textField isEqual:_usernameField])
-        _user.userId = _usernameField.text;
-    else if ([textField isEqual:_passwordField])
+    if ([textField isEqual:_usernameField]) {
+        _user.email = _usernameField.text;
+    } else if ([textField isEqual:_passwordField]) {
         _user.password = _passwordField.text;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

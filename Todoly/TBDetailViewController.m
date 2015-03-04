@@ -2,7 +2,7 @@
 //  TBDetailViewController.m
 //  Todoly
 //
-//  Copyright (c) 2012 CloudMine, LLC. All rights reserved.
+//  Copyright (c) 2015 CloudMine, Inc. All rights reserved.
 //  See LICENSE file included with project for details.
 //
 
@@ -128,7 +128,7 @@
     
     // Update item from priority control
     int previousPriority = _item.priority;
-    _item.priority = _priorityControl.selectedSegmentIndex + 1;
+    _item.priority = _priorityControl.selectedSegmentIndex + 1.0;
     
     if ([_delegate respondsToSelector:@selector(detailController:didModifyItem:)])
         [_delegate detailController:self didModifyItem:self.item];

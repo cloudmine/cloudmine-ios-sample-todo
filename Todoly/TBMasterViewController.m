@@ -2,7 +2,7 @@
 //  TBMasterViewController.m
 //  Todoly
 //
-//  Copyright (c) 2012 CloudMine, LLC. All rights reserved.
+//  Copyright (c) 2015 CloudMine, Inc. All rights reserved.
 //  See LICENSE file included with project for details.
 //
 
@@ -11,14 +11,12 @@
 #import "TBTodoItem.h"
 #import "TBTodoItemCell.h"
 
-@interface TBMasterViewController () {
-    __strong PullToRefreshView *_pull;
+@interface TBMasterViewController ()
 
-    __strong NSMutableArray *_items;
-    __strong NSDate *_refreshedDate;
-}
-- (void)reloadData;
-- (void)sortItems;
+@property (nonatomic, strong) NSMutableArray *items;
+@property (nonatomic, strong) NSDate *refreshedDate;
+@property (nonatomic, strong) UIRefreshControl *refresh;
+
 @end
 
 @implementation TBMasterViewController
@@ -29,9 +27,9 @@
     [super loadView];
     
     // Load the pull-to-refresh view
-    _pull = [[PullToRefreshView alloc] initWithScrollView:self.tableView];
-    [_pull setDelegate:self];
-    [self.tableView addSubview:_pull];
+    self.refresh = [[UIRefreshControl alloc] init];
+    [self.refresh addTarget:self action:@selector(reloadData) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:_refresh];
 }
 
 - (void)viewDidLoad {
@@ -47,15 +45,6 @@
     else
         // If they are logged in, begin the initial refresh
         [self reloadData];
-}
-
-- (void)viewDidUnload {
-    [_pull containingViewDidUnload];
-    [super viewDidUnload];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 #pragma mark - Login
@@ -114,7 +103,6 @@
 
 - (void)reloadData {
     CMStore *store = [CMStore defaultStore];
-    [_pull beginLoading];
     
     // Begin to fetch all of the to do items for the user
     [store allUserObjectsOfClass:[TBTodoItem class]
@@ -143,8 +131,6 @@
                             [self.tableView reloadData];
                             
                             _refreshedDate = [NSDate date];
-                            [_pull finishedLoading];
-                            [_pull refreshLastUpdatedDate];
                         }];
 }
 
@@ -230,33 +216,25 @@
 
 #pragma mark - Table View
 
-- (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view {
-    [self reloadData];
-}
-
-- (NSDate *)pullToRefreshViewLastUpdated:(PullToRefreshView *)view {
-    return _refreshedDate;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
+{
     return _items.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
     TBTodoItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     cell.todoItem = [_items objectAtIndex:indexPath.row];
     return cell;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath;
+{
     return YES;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+{
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if (tableView.editing) {
         // If editing, then proceed to the detail view
@@ -303,7 +281,8 @@
     }
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath;
+{
     // Handle item deletion
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         TBTodoItem *todoItem = [_items objectAtIndex:indexPath.row];
